@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TheLook Fintech · Case study: loan-portfolio health · Daniel Galea Romero</title>
+<meta name="description" content="Full case study of the Google Cloud Data Analytics Certificate capstone: BigQuery, SQL, Looker Enterprise and LookML on 270,299 loans, with insights and recommendations.">
+<link rel="canonical" href="https://danielgalea7.github.io/en/case-study/thelook-fintech/">
+<link rel="alternate" hreflang="en" href="https://danielgalea7.github.io/en/case-study/thelook-fintech/">
+<link rel="alternate" hreflang="es" href="https://danielgalea7.github.io/caso/thelook-fintech/">
+<link rel="alternate" hreflang="x-default" href="https://danielgalea7.github.io/">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121211" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Daniel Galea Romero">
+<meta property="og:title" content="TheLook Fintech · Case study: loan-portfolio health · Daniel Galea Romero">
+<meta property="og:description" content="Full case study of the Google Cloud Data Analytics Certificate capstone: BigQuery, SQL, Looker Enterprise and LookML on 270,299 loans, with insights and recommendations.">
+<meta property="og:url" content="https://danielgalea7.github.io/en/case-study/thelook-fintech/">
+<meta property="og:image" content="https://danielgalea7.github.io/assets/img/og-case-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="TheLook Fintech · Case study: loan-portfolio health · Daniel Galea Romero">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TheLook Fintech · Case study: loan-portfolio health · Daniel Galea Romero">
+<meta name="twitter:description" content="Full case study of the Google Cloud Data Analytics Certificate capstone: BigQuery, SQL, Looker Enterprise and LookML on 270,299 loans, with insights and recommendations.">
+<meta name="twitter:image" content="https://danielgalea7.github.io/assets/img/og-case-en.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css?v=1">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}document.documentElement.classList.add("js");</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Daniel Galea Romero", "jobTitle": "Junior Data Analyst", "url": "https://danielgalea7.github.io/", "email": "mailto:darnite26@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "Granada", "addressCountry": "ES"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Universidad de Granada"}, "knowsAbout": ["SQL", "BigQuery", "Looker", "LookML", "Data analysis", "Google Cloud"], "sameAs": ["https://www.linkedin.com/in/dani-galea-romero-060941371/", "https://github.com/Danielgalea7", "https://www.credly.com/badges/53fe75b2-e19a-4265-aa9f-7e4d497fc33a/public_url"]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/en/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="currentColor"/><rect x="8" y="17" width="3.5" height="7" rx="1" fill="var(--bg)"/><rect x="14.25" y="12" width="3.5" height="12" rx="1" fill="var(--bg)"/><rect x="20.5" y="8" width="3.5" height="16" rx="1" fill="var(--accent)"/></svg><span>Daniel Galea</span><small>· Data Analyst</small><span class="sr-only"> · home</span></a>
+    
+    <div class="tools">
+      <a class="lang" href="/caso/thelook-fintech/" hreflang="es" lang="es" title="Leer en español"><span aria-hidden="true">ES</span><span class="sr-only">ES · Leer en español</span></a>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch between light and dark theme"><span class="sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span class="moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="case-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="/en/#proyectos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"/></svg>Back to projects</a></p>
+      <p class="eyebrow">Case study · Google Cloud Data Analytics Certificate capstone</p>
+      <h1>The health of a <em>loan</em> portfolio, from BigQuery to Looker</h1>
+      <p class="lead">TheLook Fintech is a fictional fintech that lends to independent online stores so they can buy inventory. Treasury needed to know, quickly and without asking for reports, whether they were lending more than was prudent.</p>
+      <dl class="meta">
+        <div><dt>Role</dt><dd>Cloud Data Analyst (project)</dd></div>
+        <div><dt>Stakeholder</dt><dd>Treasury (Trevor)</dd></div>
+        <div><dt>Tools</dt><dd>BigQuery · SQL · Cloud Storage · Connected Sheets · Looker · LookML</dd></div>
+        <div><dt>Deliverables</dt><dd>4 tables · dashboard · executive summary</dd></div>
+      </dl>
+    </div>
+  </section>
+  <div class="wrap case-layout">
+    <aside class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#problema">The problem</a></li><li><a href="#datos">The data</a></li><li><a href="#proceso">BigQuery process</a></li><li><a href="#dashboard">Looker dashboard</a></li><li><a href="#insights">Insights</a></li><li><a href="#recomendaciones">Recommendations</a></li><li><a href="#aprendizajes">What I learned</a></li></ol></aside>
+    <article class="article">
+      <section aria-label="TL;DR">
+        <div class="tldr"><h2>In 20 seconds</h2><ul>
+          <li>I processed 270,299 loans ($4.17B) in BigQuery into tables ready for Treasury, one of them connected to Google Sheets.</li>
+          <li>I built a self-service Looker dashboard that turns the outstanding balance red when it breaks the limit: today, <strong>$3.08B against $3.0B</strong>.</li>
+          <li>Recommendation: slow new lending, watch concentration in 4 states and review the risk of debt-consolidation loans (56% of the total).</li>
+        </ul></div>
+      </section>
+
+      <section id="problema" aria-labelledby="h-problema">
+        <h2 id="h-problema"><span class="step">01</span>The problem</h2>
+        <div class="prose"><p>The company is in its growth stage and wants to scale fast. In a meeting with Trevor, head of Treasury, these questions came up, each with its metric:</p></div>
+        <div class="tablewrap"><table class="qtable"><thead><tr><th>Question</th><th>Metric</th><th>Why it matters</th></tr></thead><tbody><tr><td>How do we watch cash flow?</td><td>Amount lent per year</td><td>Cash out must not exceed cash in.</td></tr><tr><td>Why do customers borrow?</td><td>Purpose (<code>application.purpose</code>)</td><td>Purpose is strongly linked to the likelihood of repayment.</td></tr><tr><td>Where are the borrowers?</td><td>Location (state → region)</td><td>Geographic concentration raises the risk of collective defaults.</td></tr><tr><td>How much is outstanding?</td><td>Outstanding balance vs $3B limit</td><td>It is the most the team considers prudent to lend.</td></tr><tr><td>Which part is going wrong?</td><td>% of balance by loan status</td><td>Late, charged-off and defaulted loans are the real risk.</td></tr></tbody></table></div>
+      </section>
+
+      <section id="datos" aria-labelledby="h-datos">
+        <h2 id="h-datos"><span class="step">02</span>The data</h2>
+        <div class="prose">
+          <p>The <code>fintech</code> BigQuery dataset, with two tables and an external CSV:</p>
+          <ul class="clean">
+            <li><code>loan</code>: 270,299 loans from 2012 to 2019 with amount, interest rate, issue date and year, loan status, state and a nested <code>application</code> record holding the purpose.</li>
+            <li><code>customers</code>: annual income, home ownership, employment length and state of residence.</li>
+            <li>A CSV in Cloud Storage with the new classification of states into regions and subregions.</li>
+          </ul>
+          <p>Limitations: the data is fictional (Google Cloud Training), stops in 2019 and has no repayments, so cash flow can only be seen from the outflow side.</p>
+        </div>
+        <div class="arch"><svg class="h" viewBox="0 0 960 180" role="img" aria-labelledby="arch-t-en"><title id="arch-t-en">Capstone architecture: CSV in Cloud Storage, SQL processing in BigQuery, four result tables, a LookML model and a dashboard for Treasury.</title><rect class="box" x="20" y="40" width="160" height="96" rx="12"/><text class="t3" x="36" y="66">COLLECT</text><text class="t1" x="36" y="94">Cloud Storage</text><text class="t2" x="36" y="116">LOAD DATA · *.csv</text><rect class="box acc" x="210" y="40" width="160" height="96" rx="12"/><text class="t3" x="226" y="66">PROCESS</text><text class="t1" x="226" y="94">BigQuery · SQL</text><text class="t2" x="226" y="116">JOIN · DISTINCT</text><rect class="box" x="400" y="40" width="160" height="96" rx="12"/><text class="t3" x="416" y="66">STORE</text><text class="t1" x="416" y="94">fintech tables</text><text class="t2" x="416" y="116">4 tables · 3 CTAS</text><rect class="box acc" x="590" y="40" width="160" height="96" rx="12"/><text class="t3" x="606" y="66">ANALYZE</text><text class="t1" x="606" y="94">LookML</text><text class="t2" x="606" y="116">loan.view · Explore</text><rect class="box" x="780" y="40" width="160" height="96" rx="12"/><text class="t3" x="796" y="66">ACTIVATE</text><text class="t1" x="796" y="94">Treasury</text><text class="t2" x="796" y="116">Dashboard · Sheets</text><path class="wire" d="M180 88h30"/><path class="flow" d="M180 88h30"/><path class="wire" d="M370 88h30"/><path class="flow" d="M370 88h30"/><path class="wire" d="M560 88h30"/><path class="flow" d="M560 88h30"/><path class="wire" d="M750 88h30"/><path class="flow" d="M750 88h30"/><text class="t2" x="400" y="170">loan_with_region · loan_purposes · loan_count_by_year · state_region</text><path class="wire" d="M480 136v18"/></svg><svg class="v" viewBox="0 0 360 620" role="img" aria-labelledby="archv-t-en"><title id="archv-t-en">Capstone architecture in five steps</title><rect class="box" x="20" y="10" width="320" height="92" rx="12"/><text class="t3" x="40" y="38">COLLECT</text><text class="t1" x="40" y="66">Cloud Storage</text><text class="t2" x="40" y="86">LOAD DATA · *.csv</text><path class="wire" d="M180 102v32"/><path class="flow" d="M180 102v32"/><rect class="box acc" x="20" y="134" width="320" height="92" rx="12"/><text class="t3" x="40" y="162">PROCESS</text><text class="t1" x="40" y="190">BigQuery · SQL</text><text class="t2" x="40" y="210">JOIN · DISTINCT</text><path class="wire" d="M180 226v32"/><path class="flow" d="M180 226v32"/><rect class="box" x="20" y="258" width="320" height="92" rx="12"/><text class="t3" x="40" y="286">STORE</text><text class="t1" x="40" y="314">fintech tables</text><text class="t2" x="40" y="334">4 tables · 3 CTAS</text><path class="wire" d="M180 350v32"/><path class="flow" d="M180 350v32"/><rect class="box acc" x="20" y="382" width="320" height="92" rx="12"/><text class="t3" x="40" y="410">ANALYZE</text><text class="t1" x="40" y="438">LookML</text><text class="t2" x="40" y="458">loan.view · Explore</text><path class="wire" d="M180 474v32"/><path class="flow" d="M180 474v32"/><rect class="box" x="20" y="506" width="320" height="92" rx="12"/><text class="t3" x="40" y="534">ACTIVATE</text><text class="t1" x="40" y="562">Treasury</text><text class="t2" x="40" y="582">Dashboard · Sheets</text></svg></div>
+      </section>
+
+      <section id="proceso" aria-labelledby="h-proceso">
+        <h2 id="h-proceso"><span class="step">03</span>Process in BigQuery</h2>
+        <p class="prose">Capstone part 1: collect, process and store. The SQL is what I ran in the lab.</p>
+        <div class="steps"><div class="stepcard"><h3>Import the state classification from Cloud Storage</h3><p>Trevor gave us a CSV mapping each state to a region and subregion. I loaded it as a standard table with <code>LOAD DATA OVERWRITE</code> and an explicit schema, using a wildcard to read every file.</p><div class="codewrap"><pre data-copy tabindex="0"><code class="language-sql"><span class="k">LOAD</span> <span class="k">DATA</span> <span class="k">OVERWRITE</span> fintech.state_region
+(
+  state <span class="k">string</span>,
+  subregion <span class="k">string</span>,
+  region <span class="k">string</span>
+)
+<span class="k">FROM</span> <span class="k">FILES</span> (
+  <span class="k">format</span> = <span class="s">&#x27;CSV&#x27;</span>,
+  <span class="k">uris</span> = [<span class="s">&#x27;gs://sureskills-lab-dev/future-workforce/da-capstone/temp_35_us/state_region_mapping/state_region_*.csv&#x27;</span>]);</code></pre></div></div><div class="stepcard"><h3>Join on the right key and save the report</h3><p>The report needed <code>loan_id</code>, <code>loan_amount</code> and the new region. There were two candidate queries: joining on <code>region</code> looked plausible, but the key both tables share is <code>state</code>. I saved the result with CTAS and opened it in <strong>Connected Sheets</strong> so Treasury could filter it as a spreadsheet (about 270,000 rows).</p><p class="why">Joining on <code>region</code> would have used the old classification (or none). The JOIN decides what the report says.</p><div class="codewrap"><pre data-copy tabindex="0"><code class="language-sql"><span class="c">-- Query B: join on the key both tables share</span>
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">TABLE</span> fintech.loan_with_region <span class="k">AS</span>
+<span class="k">SELECT</span>
+  lo.loan_id,
+  lo.loan_amount,
+  sr.region
+<span class="k">FROM</span> fintech.loan lo
+<span class="k">INNER</span> <span class="k">JOIN</span> fintech.state_region sr
+  <span class="k">ON</span> lo.state = sr.state;</code></pre></div></div><div class="stepcard"><h3>Nested data and deduplication</h3><p>The loan purpose lives inside the nested <code>application</code> record. <code>SELECT purpose</code> fails; you need dot notation. With <code>DISTINCT</code> and CTAS I left a clean table of unique purposes.</p><div class="codewrap"><pre data-copy tabindex="0"><code class="language-sql"><span class="c">-- purpose lives inside the nested RECORD `application`</span>
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">TABLE</span> fintech.loan_purposes <span class="k">AS</span>
+<span class="k">SELECT</span> <span class="k">DISTINCT</span> application.purpose <span class="k">AS</span> purpose
+<span class="k">FROM</span> fintech.loan;</code></pre></div></div><div class="stepcard"><h3>Cash-flow report by year</h3><p>For the cash-flow question Trevor wanted one row per year. <code>GROUP BY</code> with <code>COUNT</code> and <code>SUM</code>, saved as a table for reuse.</p><div class="codewrap"><pre data-copy tabindex="0"><code class="language-sql"><span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">TABLE</span> fintech.loan_count_by_year <span class="k">AS</span>
+<span class="k">SELECT</span> issue_year, <span class="f">COUNT</span>(loan_id) <span class="k">AS</span> loan_count
+<span class="k">FROM</span> fintech.loan
+<span class="k">GROUP</span> <span class="k">BY</span> issue_year;
+
+<span class="c">-- Cash out per year (Treasury&#x27;s cash-flow question)</span>
+<span class="k">SELECT</span> issue_year, <span class="f">SUM</span>(loan_amount) <span class="k">AS</span> total_amount
+<span class="k">FROM</span> fintech.loan
+<span class="k">GROUP</span> <span class="k">BY</span> issue_year
+<span class="k">ORDER</span> <span class="k">BY</span> issue_year;</code></pre></div></div></div>
+        <div class="grid2" style="margin-top:28px"><div class="card"><div class="chart reveal"><p class="ctitle">Loans issued per year</p><p class="csub">Number of loans · loan_count_by_year table</p><div class="cols" style="height:180px" aria-hidden="true"><div class="col" style="--h:5.01%" data-tip="&lt;b&gt;2012&lt;/b&gt;&lt;br&gt;2,594 loans"><span class="cv">2,594</span><span class="cb"></span></div><div class="col" style="--h:26.02%" data-tip="&lt;b&gt;2013&lt;/b&gt;&lt;br&gt;13,460 loans"><span class="cb"></span></div><div class="col" style="--h:45.33%" data-tip="&lt;b&gt;2014&lt;/b&gt;&lt;br&gt;23,453 loans"><span class="cb"></span></div><div class="col" style="--h:81.02%" data-tip="&lt;b&gt;2015&lt;/b&gt;&lt;br&gt;41,919 loans"><span class="cb"></span></div><div class="col" style="--h:83.82%" data-tip="&lt;b&gt;2016&lt;/b&gt;&lt;br&gt;43,368 loans"><span class="cb"></span></div><div class="col" style="--h:85.89%" data-tip="&lt;b&gt;2017&lt;/b&gt;&lt;br&gt;44,435 loans"><span class="cb"></span></div><div class="col" style="--h:95.35%" data-tip="&lt;b&gt;2018&lt;/b&gt;&lt;br&gt;49,333 loans"><span class="cb"></span></div><div class="col" style="--h:100.00%" data-tip="&lt;b&gt;2019&lt;/b&gt;&lt;br&gt;51,737 loans"><span class="cv">51,737</span><span class="cb"></span></div></div><div class="cols-x" aria-hidden="true"><span>2012</span><span>2013</span><span>2014</span><span>2015</span><span>2016</span><span>2017</span><span>2018</span><span>2019</span></div><details class="table"><summary>Show the data</summary><table><thead><tr><th>Year</th><th class="r">Loans</th></tr></thead><tbody><tr><td>2012</td><td class="r">2,594</td></tr><tr><td>2013</td><td class="r">13,460</td></tr><tr><td>2014</td><td class="r">23,453</td></tr><tr><td>2015</td><td class="r">41,919</td></tr><tr><td>2016</td><td class="r">43,368</td></tr><tr><td>2017</td><td class="r">44,435</td></tr><tr><td>2018</td><td class="r">49,333</td></tr><tr><td>2019</td><td class="r">51,737</td></tr></tbody></table></details></div></div><div class="card"><div class="chart reveal"><p class="ctitle">Amount lent per year</p><p class="csub">Millions of dollars</p><div class="cols" style="height:180px" aria-hidden="true"><div class="col" style="--h:4.16%" data-tip="&lt;b&gt;2012&lt;/b&gt;&lt;br&gt;$35.5M · 2,594 loans"><span class="cv">$35M</span><span class="cb"></span></div><div class="col" style="--h:23.39%" data-tip="&lt;b&gt;2013&lt;/b&gt;&lt;br&gt;$199.4M · 13,460 loans"><span class="cb"></span></div><div class="col" style="--h:40.86%" data-tip="&lt;b&gt;2014&lt;/b&gt;&lt;br&gt;$348.3M · 23,453 loans"><span class="cb"></span></div><div class="col" style="--h:75.02%" data-tip="&lt;b&gt;2015&lt;/b&gt;&lt;br&gt;$639.4M · 41,919 loans"><span class="cb"></span></div><div class="col" style="--h:74.93%" data-tip="&lt;b&gt;2016&lt;/b&gt;&lt;br&gt;$638.6M · 43,368 loans"><span class="cb"></span></div><div class="col" style="--h:77.51%" data-tip="&lt;b&gt;2017&lt;/b&gt;&lt;br&gt;$660.7M · 44,435 loans"><span class="cb"></span></div><div class="col" style="--h:92.90%" data-tip="&lt;b&gt;2018&lt;/b&gt;&lt;br&gt;$791.9M · 49,333 loans"><span class="cb"></span></div><div class="col" style="--h:100.00%" data-tip="&lt;b&gt;2019&lt;/b&gt;&lt;br&gt;$852.4M · 51,737 loans"><span class="cv">$852M</span><span class="cb"></span></div></div><div class="cols-x" aria-hidden="true"><span>2012</span><span>2013</span><span>2014</span><span>2015</span><span>2016</span><span>2017</span><span>2018</span><span>2019</span></div><details class="table"><summary>Show the data</summary><table><thead><tr><th>Year</th><th class="r">Amount</th></tr></thead><tbody><tr><td>2012</td><td class="r">$35M</td></tr><tr><td>2013</td><td class="r">$199M</td></tr><tr><td>2014</td><td class="r">$348M</td></tr><tr><td>2015</td><td class="r">$639M</td></tr><tr><td>2016</td><td class="r">$639M</td></tr><tr><td>2017</td><td class="r">$661M</td></tr><tr><td>2018</td><td class="r">$792M</td></tr><tr><td>2019</td><td class="r">$852M</td></tr></tbody></table></details></div></div></div>
+      </section>
+
+      <section id="dashboard" aria-labelledby="h-dash">
+        <h2 id="h-dash"><span class="step">04</span>Looker dashboard</h2>
+        <p class="prose">Part 2: analyse and activate. A self-service dashboard, <em>Loan Insights</em>, with four visualisations on the LookML <code>loan</code> view, cross-filtering (clicking a value filters the other tiles) and per-tile refresh schedules.</p>
+        <div class="dash" role="group" aria-label="Recreation of the Loan Insights dashboard">
+      <div class="dash-top"><strong>Loan Insights</strong><span class="filters"><span>Cross-filtering: on</span><span>Refresh: 1 h</span></span></div>
+      <div class="tiles">
+        <div class="tile single"><h3>Total Amount of Outstanding Loans <small>single value</small></h3>
+          <div class="val">3,080,553,000</div>
+          <p class="rule">Conditional formatting: red background if &gt; 3,000,000,000</p></div>
+        <div class="tile"><h3>Percentage of Outstanding Loans <small>pie → bar</small></h3>
+          <div class="stack" style="height:26px"><span class="sm" style="flex:87.888" data-tip="Current: 87.89%"></span><span class="sc" style="flex:9.072" data-tip="Charged off: 9.07%"></span><span class="s2" style="flex:1.716" data-tip="Late 31–120 days: 1.72%"></span><span class="s4" style="flex:0.895" data-tip="Grace period: 0.90%"></span><span class="s5" style="flex:0.423" data-tip="Late 16–30 days: 0.42%"></span><span class="s1" style="flex:0.006" data-tip="Default: 0.01%"></span></div><ul class="legend"><li><i class="sm"></i>Current <span class="num">87.89%</span></li><li><i class="sc"></i>Charged off <span class="num">9.07%</span></li><li><i class="s2"></i>Late 31–120 days <span class="num">1.72%</span></li><li><i class="s4"></i>Grace period <span class="num">0.90%</span></li><li><i class="s5"></i>Late 16–30 days <span class="num">0.42%</span></li><li><i class="s1"></i>Default <span class="num">0.01%</span></li></ul></div>
+        <div class="tile"><h3>Total Count of Outstanding Loans <small>bar · top 10</small></h3><div class="chart reveal"><ol class="bars" style="--lw:28px"><li><span class="bl">CA</span><span class="bt" data-tip="CA: 25,730"><span class="bb" style="--v:100.00%"></span></span><span class="bv">25,730</span></li><li><span class="bl">TX</span><span class="bt" data-tip="TX: 16,344"><span class="bb" style="--v:63.52%"></span></span><span class="bv">16,344</span></li><li><span class="bl">NY</span><span class="bt" data-tip="NY: 15,892"><span class="bb" style="--v:61.76%"></span></span><span class="bv">15,892</span></li><li><span class="bl">FL</span><span class="bt" data-tip="FL: 14,510"><span class="bb" style="--v:56.39%"></span></span><span class="bv">14,510</span></li><li><span class="bl">IL</span><span class="bt" data-tip="IL: 7,904"><span class="bb" style="--v:30.72%"></span></span><span class="bv">7,904</span></li><li><span class="bl">NJ</span><span class="bt" data-tip="NJ: 7,171"><span class="bb" style="--v:27.87%"></span></span><span class="bv">7,171</span></li><li><span class="bl">OH</span><span class="bt" data-tip="OH: 6,663"><span class="bb" style="--v:25.90%"></span></span><span class="bv">6,663</span></li><li><span class="bl">PA</span><span class="bt" data-tip="PA: 6,509"><span class="bb" style="--v:25.30%"></span></span><span class="bv">6,509</span></li><li><span class="bl">GA</span><span class="bt" data-tip="GA: 6,324"><span class="bb" style="--v:24.58%"></span></span><span class="bv">6,324</span></li><li><span class="bl">NC</span><span class="bt" data-tip="NC: 5,359"><span class="bb" style="--v:20.83%"></span></span><span class="bv">5,359</span></li></ol></div></div>
+        <div class="tile"><h3>Top 10 Customers by Highest Income <small>table</small></h3>
+          <table class="ptable"><thead><tr><th>Customer ID</th><th>Annual Income</th><th>State</th><th>Rate</th></tr></thead><tbody><tr><td><span class="redact" style="width:70px"></span></td><td><span class="redact" style="width:52px"></span></td><td><span class="redact" style="width:22px"></span></td><td><span class="redact" style="width:30px"></span></td></tr><tr><td><span class="redact" style="width:58px"></span></td><td><span class="redact" style="width:50px"></span></td><td><span class="redact" style="width:22px"></span></td><td><span class="redact" style="width:30px"></span></td></tr><tr><td><span class="redact" style="width:64px"></span></td><td><span class="redact" style="width:48px"></span></td><td><span class="redact" style="width:22px"></span></td><td><span class="redact" style="width:30px"></span></td></tr><tr><td><span class="redact" style="width:52px"></span></td><td><span class="redact" style="width:46px"></span></td><td><span class="redact" style="width:22px"></span></td><td><span class="redact" style="width:30px"></span></td></tr><tr><td><span class="redact" style="width:66px"></span></td><td><span class="redact" style="width:44px"></span></td><td><span class="redact" style="width:22px"></span></td><td><span class="redact" style="width:30px"></span></td></tr></tbody></table>
+          <p class="rule" style="font-size:12px;color:var(--muted);margin:8px 0 0">Filters: Home Ownership = OWN · Loan Status = Current. Rows hidden on purpose: I don’t publish customer-level data, even fictional.</p></div>
+      </div>
+    </div>
+    <p class="dash-note">HTML recreation with the dataset’s real figures, based on the dashboard I built in Looker Enterprise inside the lab environment (which can’t be shared outside it). In Looker the status split was a pie chart; here it’s a stacked bar, which reads better with such small percentages.</p>
+        <h3>Inside the metric</h3>
+        <p class="prose">The main tile uses the LookML measure <em>Outstanding Loans Amount</em>. This is the SQL Looker generates: it sums the amount of every loan whose status is not <em>Fully Paid</em>.</p>
+        <div class="codewrap"><pre data-copy tabindex="0"><code class="language-sql"><span class="c">-- SQL that Looker generates for the LookML measure</span>
+<span class="c">-- &quot;Outstanding Loans Amount&quot; (single value tile)</span>
+<span class="k">SELECT</span> <span class="f">COALESCE</span>(<span class="f">SUM</span>(<span class="k">CASE</span> <span class="k">WHEN</span> (loan.loan_status &lt;&gt; <span class="s">&#x27;Fully Paid&#x27;</span>
+                               <span class="k">OR</span> loan.loan_status <span class="k">IS</span> <span class="k">NULL</span>)
+                         <span class="k">THEN</span> loan.loan_amount <span class="k">ELSE</span> <span class="k">NULL</span> <span class="k">END</span>), <span class="n">0</span>)
+       <span class="k">AS</span> loan_outstanding_loans_amount
+<span class="k">FROM</span> <span class="s">`cloud-training-demos.fintech.loan`</span> <span class="k">AS</span> loan
+<span class="k">LIMIT</span> <span class="n">500</span>;</code></pre></div>
+        <h3>Per-tile refresh</h3>
+        <div class="tablewrap"><table class="refresh"><thead><tr><th>Tile</th><th>Frequency</th><th>Why</th></tr></thead><tbody>
+      <tr><td>Total Amount of Outstanding Loans</td><td>Hourly</td><td>It is the risk alert: it must be fresh</td></tr>
+      <tr><td>Percentage of Outstanding Loans</td><td>Daily</td><td>The status mix moves slowly</td></tr>
+      <tr><td>Top 10 Customers by Highest Income</td><td>Daily</td><td>Saves queries without losing usefulness</td></tr>
+      <tr><td>Whole dashboard</td><td>Hourly</td><td>Matches the most demanding tile</td></tr></tbody></table></div>
+      </section>
+
+      <section id="insights" aria-labelledby="h-ins">
+        <h2 id="h-ins"><span class="step">05</span>Insights</h2>
+        <div class="insight">
+          <div><h3>The outstanding balance is already over the limit</h3>
+            <p class="big alert num">$3.08B</p>
+            <p>2.7% above the $3B Treasury considers prudent. 87.9% is current, but <strong>$373M (12.1%)</strong> is not — mostly charged-off loans ($279M).</p></div>
+          <div><div class="chart"><p class="ctitle">Outstanding balance vs Treasury's limit</p>
+      <p class="csub">Scale from $0 to $3.5B</p>
+      <div class="meter" role="img" aria-label="$3.08 billion outstanding against a $3.0 billion limit">
+        <div class="track"><div class="fill" style="--v:88.02%"></div><div class="mark" style="--t:85.71%"><span>limit $3.0B</span></div></div>
+        <div class="scale"><span>0</span><span>1,000</span><span>2,000</span><span>3,000</span><span>$3,500M</span></div>
+      </div></div><div style="height:18px"></div><div class="chart reveal"><p class="ctitle">Outstanding balance by loan status</p><p class="csub">Millions of dollars and % of total outstanding</p><ol class="bars" style="--lw:150px"><li class="muted-row"><span class="bl">Current</span><span class="bt" data-tip="Current: $2,707.4M"><span class="bb" style="--v:100.00%"></span></span><span class="bv">$2,707.4M · 87.89%</span></li><li class="crit"><span class="bl">Charged off</span><span class="bt" data-tip="Charged off: $279.5M"><span class="bb" style="--v:10.32%"></span></span><span class="bv">$279.5M · 9.07%</span></li><li class="crit"><span class="bl">Late 31–120 days</span><span class="bt" data-tip="Late 31–120 days: $52.8M"><span class="bb" style="--v:1.95%"></span></span><span class="bv">$52.8M · 1.72%</span></li><li class="crit"><span class="bl">Grace period</span><span class="bt" data-tip="Grace period: $27.6M"><span class="bb" style="--v:1.02%"></span></span><span class="bv">$27.6M · 0.90%</span></li><li class="crit"><span class="bl">Late 16–30 days</span><span class="bt" data-tip="Late 16–30 days: $13.0M"><span class="bb" style="--v:0.60%"></span></span><span class="bv">$13.0M · 0.42%</span></li><li class="crit"><span class="bl">Default</span><span class="bt" data-tip="Default: $0.2M"><span class="bb" style="--v:0.60%"></span></span><span class="bv">$0.2M · 0.01%</span></li></ol><details class="table"><summary>Show the data</summary><table><thead><tr><th>Status</th><th class="r">Amount</th></tr></thead><tbody><tr><td>Current</td><td class="r">$2,707.4M · 87.89%</td></tr><tr><td>Charged off</td><td class="r">$279.5M · 9.07%</td></tr><tr><td>Late 31–120 days</td><td class="r">$52.8M · 1.72%</td></tr><tr><td>Grace period</td><td class="r">$27.6M · 0.90%</td></tr><tr><td>Late 16–30 days</td><td class="r">$13.0M · 0.42%</td></tr><tr><td>Default</td><td class="r">$0.2M · 0.01%</td></tr></tbody></table></details></div></div>
+        </div>
+        <div class="insight">
+          <div><h3>Very fast growth</h3>
+            <p class="big num">×24</p>
+            <p>Lending grew from $35.5M in 2012 to <strong>$852.4M in 2019</strong> (2,594 → 51,737 loans). Growing this fast requires watching risk at the same time.</p></div>
+          <div class="card"><div class="chart reveal"><p class="ctitle">Amount lent per year</p><p class="csub">Millions of dollars</p><div class="cols" style="height:180px" aria-hidden="true"><div class="col" style="--h:4.16%" data-tip="&lt;b&gt;2012&lt;/b&gt;&lt;br&gt;$35.5M · 2,594 loans"><span class="cv">$35M</span><span class="cb"></span></div><div class="col" style="--h:23.39%" data-tip="&lt;b&gt;2013&lt;/b&gt;&lt;br&gt;$199.4M · 13,460 loans"><span class="cb"></span></div><div class="col" style="--h:40.86%" data-tip="&lt;b&gt;2014&lt;/b&gt;&lt;br&gt;$348.3M · 23,453 loans"><span class="cb"></span></div><div class="col" style="--h:75.02%" data-tip="&lt;b&gt;2015&lt;/b&gt;&lt;br&gt;$639.4M · 41,919 loans"><span class="cb"></span></div><div class="col" style="--h:74.93%" data-tip="&lt;b&gt;2016&lt;/b&gt;&lt;br&gt;$638.6M · 43,368 loans"><span class="cb"></span></div><div class="col" style="--h:77.51%" data-tip="&lt;b&gt;2017&lt;/b&gt;&lt;br&gt;$660.7M · 44,435 loans"><span class="cb"></span></div><div class="col" style="--h:92.90%" data-tip="&lt;b&gt;2018&lt;/b&gt;&lt;br&gt;$791.9M · 49,333 loans"><span class="cb"></span></div><div class="col" style="--h:100.00%" data-tip="&lt;b&gt;2019&lt;/b&gt;&lt;br&gt;$852.4M · 51,737 loans"><span class="cv">$852M</span><span class="cb"></span></div></div><div class="cols-x" aria-hidden="true"><span>2012</span><span>2013</span><span>2014</span><span>2015</span><span>2016</span><span>2017</span><span>2018</span><span>2019</span></div><details class="table"><summary>Show the data</summary><table><thead><tr><th>Year</th><th class="r">Amount</th></tr></thead><tbody><tr><td>2012</td><td class="r">$35M</td></tr><tr><td>2013</td><td class="r">$199M</td></tr><tr><td>2014</td><td class="r">$348M</td></tr><tr><td>2015</td><td class="r">$639M</td></tr><tr><td>2016</td><td class="r">$639M</td></tr><tr><td>2017</td><td class="r">$661M</td></tr><tr><td>2018</td><td class="r">$792M</td></tr><tr><td>2019</td><td class="r">$852M</td></tr></tbody></table></details></div></div>
+        </div>
+        <div class="insight">
+          <div><h3>Most borrowers refinance debt</h3>
+            <p class="big num">80%</p>
+            <p>of loans are for debt consolidation (56%) or credit-card payoff (24%). Purpose is closely tied to repayment likelihood: it is the first risk lever.</p></div>
+          <div class="card"><div class="chart reveal"><p class="ctitle">Loans by purpose</p><p class="csub">Nested column application.purpose · 2012–2019</p><ol class="bars" style="--lw:170px"><li class="hl"><span class="bl">Debt consolidation</span><span class="bt" data-tip="Debt consolidation: 152,285"><span class="bb" style="--v:100.00%"></span></span><span class="bv">152,285 · 56%</span></li><li class="hl"><span class="bl">Credit card</span><span class="bt" data-tip="Credit card: 64,477"><span class="bb" style="--v:42.34%"></span></span><span class="bv">64,477 · 24%</span></li><li class="muted-row"><span class="bl">Home improvement</span><span class="bt" data-tip="Home improvement: 17,601"><span class="bb" style="--v:11.56%"></span></span><span class="bv">17,601 · 7%</span></li><li class="muted-row"><span class="bl">Other</span><span class="bt" data-tip="Other: 16,279"><span class="bb" style="--v:10.69%"></span></span><span class="bv">16,279 · 6%</span></li><li class="muted-row"><span class="bl">Major purchase</span><span class="bt" data-tip="Major purchase: 5,584"><span class="bb" style="--v:3.67%"></span></span><span class="bv">5,584 · 2%</span></li><li class="muted-row"><span class="bl">All other purposes</span><span class="bt" data-tip="Rest"><span class="bb" style="--v:9.24%"></span></span><span class="bv">14,073 · 5%</span></li></ol><details class="table"><summary>Show the data</summary><table><thead><tr><th>Purpose</th><th class="r">Loans</th></tr></thead><tbody><tr><td>Debt consolidation</td><td class="r">152,285 · 56%</td></tr><tr><td>Credit card</td><td class="r">64,477 · 24%</td></tr><tr><td>Home improvement</td><td class="r">17,601 · 7%</td></tr><tr><td>Other</td><td class="r">16,279 · 6%</td></tr><tr><td>Major purchase</td><td class="r">5,584 · 2%</td></tr><tr><td>All other purposes</td><td class="r">14,073 · 5%</td></tr></tbody></table></details></div></div>
+        </div>
+        <div class="insight">
+          <div><h3>Four states concentrate the risk</h3>
+            <p class="big num">72,476</p>
+            <p>outstanding loans in California, Texas, New York and Florida — more than the other six top-10 states combined (39,930).</p></div>
+          <div class="card"><div class="chart reveal"><p class="ctitle">Top 10 states by outstanding loans</p><p class="csub">Number of loans not fully paid</p><ol class="bars" style="--lw:40px"><li class="hl"><span class="bl">CA</span><span class="bt" data-tip="CA: 25,730 outstanding loans"><span class="bb" style="--v:100.00%"></span></span><span class="bv">25,730</span></li><li class="hl"><span class="bl">TX</span><span class="bt" data-tip="TX: 16,344 outstanding loans"><span class="bb" style="--v:63.52%"></span></span><span class="bv">16,344</span></li><li class="hl"><span class="bl">NY</span><span class="bt" data-tip="NY: 15,892 outstanding loans"><span class="bb" style="--v:61.76%"></span></span><span class="bv">15,892</span></li><li class="hl"><span class="bl">FL</span><span class="bt" data-tip="FL: 14,510 outstanding loans"><span class="bb" style="--v:56.39%"></span></span><span class="bv">14,510</span></li><li class="muted-row"><span class="bl">IL</span><span class="bt" data-tip="IL: 7,904 outstanding loans"><span class="bb" style="--v:30.72%"></span></span><span class="bv">7,904</span></li><li class="muted-row"><span class="bl">NJ</span><span class="bt" data-tip="NJ: 7,171 outstanding loans"><span class="bb" style="--v:27.87%"></span></span><span class="bv">7,171</span></li><li class="muted-row"><span class="bl">OH</span><span class="bt" data-tip="OH: 6,663 outstanding loans"><span class="bb" style="--v:25.90%"></span></span><span class="bv">6,663</span></li><li class="muted-row"><span class="bl">PA</span><span class="bt" data-tip="PA: 6,509 outstanding loans"><span class="bb" style="--v:25.30%"></span></span><span class="bv">6,509</span></li><li class="muted-row"><span class="bl">GA</span><span class="bt" data-tip="GA: 6,324 outstanding loans"><span class="bb" style="--v:24.58%"></span></span><span class="bv">6,324</span></li><li class="muted-row"><span class="bl">NC</span><span class="bt" data-tip="NC: 5,359 outstanding loans"><span class="bb" style="--v:20.83%"></span></span><span class="bv">5,359</span></li></ol><details class="table"><summary>Show the data</summary><table><thead><tr><th>State</th><th class="r">Loans</th></tr></thead><tbody><tr><td>CA</td><td class="r">25,730</td></tr><tr><td>TX</td><td class="r">16,344</td></tr><tr><td>NY</td><td class="r">15,892</td></tr><tr><td>FL</td><td class="r">14,510</td></tr><tr><td>IL</td><td class="r">7,904</td></tr><tr><td>NJ</td><td class="r">7,171</td></tr><tr><td>OH</td><td class="r">6,663</td></tr><tr><td>PA</td><td class="r">6,509</td></tr><tr><td>GA</td><td class="r">6,324</td></tr><tr><td>NC</td><td class="r">5,359</td></tr></tbody></table></details></div></div>
+        </div>
+      </section>
+
+      <section id="recomendaciones" aria-labelledby="h-rec">
+        <h2 id="h-rec"><span class="step">06</span>Recommendations</h2>
+        <p class="prose">I closed it with a one-slide executive summary for leadership, with no technical jargon:</p>
+        <div class="slide">
+          <div class="slide-head"><h3>Lending under control: what Treasury needs to see</h3><span>Prepared for: TheLook Fintech executive team</span></div>
+          <div class="slide-body">
+            <div><h4>Overview</h4><p>TheLook Fintech is growing fast and must make sure what it lends does not exceed what comes in. We brought loan data together in BigQuery and turned it into reports and a dashboard to track cash flow, purpose and location.</p></div>
+            <div><h4>Objective</h4><ul><li>Goal 1: report of loans issued per year.</li><li>Goal 2: self-service dashboard on portfolio health.</li><li>Impact: decide on time, reduce risk and tailor the offer.</li></ul></div>
+            <div><h4>Results</h4><ul><li>Loans ×20 between 2012 and 2019 (2,594 → 51,737).</li><li>Outstanding: $3.08B, above the limit and flagged red.</li><li>87.9% current; 4 states concentrate the risk.</li></ul></div>
+            <div><h4>Next steps</h4><ul><li><strong>Slow new lending while the balance is over the limit</strong> and prioritise collections: it is $80.6M over today.</li><li><strong>Watch concentration</strong> in California, Texas, New York and Florida (72,476 outstanding loans, more than the other six top-10 states combined).</li><li><strong>Review risk by purpose</strong>: 80% of loans are for debt consolidation or credit cards.</li></ul></div>
+          </div>
+        </div>
+        <h3>Then</h3>
+        <ul class="clean prose"><li>Add an automatic <strong>alert</strong> when the balance crosses the threshold, not just a colour.</li><li>Bring in <strong>repayments</strong> (cash in) to see the full cash-flow picture, not just the outflows.</li><li>Collect Treasury's <strong>feedback</strong> on the dashboard and iterate, and <strong>segment borrowers</strong> by behaviour (as in my RFM project).</li></ul>
+      </section>
+
+      <section id="aprendizajes" aria-labelledby="h-learn">
+        <h2 id="h-learn"><span class="step">07</span>What I learned</h2>
+        <ul class="learn"><li><span class="ix">01</span><div><b>The JOIN key is a business decision</b>Two almost identical queries produced different reports. I now check which column the tables truly share before joining.</div></li><li><span class="ix">02</span><div><b>A metric is not a column</b>'Outstanding balance' in the lab sums the original amount of loans not fully paid, not the remaining principal. In a real job I'd ask for the live balance and document it in LookML.</div></li><li><span class="ix">03</span><div><b>A visible threshold beats a table</b>Conditional formatting turns Treasury's rule ($3B) into something you see in one second.</div></li><li><span class="ix">04</span><div><b>Refreshing has a cost</b>Each tile refreshes as fast as its data changes: performance and cost, not just freshness.</div></li><li><span class="ix">05</span><div><b>Write for the decision-maker</b>The executive summary fits on one slide: title, context, goal, results with numbers and a next step. No jargon.</div></li></ul>
+        <p class="prose" style="margin-top:22px;font-size:14.5px">Certificate capstone, mixing guided steps with challenges that had no step-by-step instructions, on fictional Google Cloud Training data. Figures re-queried from <code>cloud-training-demos.fintech</code> on 12 Oct 2026; they match the lab. The full SQL is on <a href="https://github.com/Danielgalea7/thelook-fintech-capstone">GitHub</a>.</p>
+        <div class="next-case"><a class="btn" href="/en/#proyectos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"/></svg>More projects</a><a class="btn primary" href="mailto:darnite26@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Let's talk</a></div>
+      </section>
+    </article>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Data: <code>bigquery-public-data.thelook_ecommerce</code> (synthetic, snapshot of 12 Oct 2026) and <code>cloud-training-demos.fintech</code> (capstone). Queries run in the BigQuery sandbox. Static site in HTML, CSS and JavaScript — no frameworks, no cookies.</p>
+    <p>© 2026 Daniel Galea Romero</p>
+  </div>
+</footer>
+<script src="/assets/js/site.js?v=1" defer></script>
+</body>
+</html>

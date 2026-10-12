@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TheLook Fintech · Caso: salud de la cartera de préstamos · Daniel Galea Romero</title>
+<meta name="description" content="Caso completo del capstone del Google Cloud Data Analytics Certificate: BigQuery, SQL, Looker Enterprise y LookML sobre 270.299 préstamos, con insights y recomendaciones.">
+<link rel="canonical" href="https://danielgalea7.github.io/caso/thelook-fintech/">
+<link rel="alternate" hreflang="es" href="https://danielgalea7.github.io/caso/thelook-fintech/">
+<link rel="alternate" hreflang="en" href="https://danielgalea7.github.io/en/case-study/thelook-fintech/">
+<link rel="alternate" hreflang="x-default" href="https://danielgalea7.github.io/">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121211" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Daniel Galea Romero">
+<meta property="og:title" content="TheLook Fintech · Caso: salud de la cartera de préstamos · Daniel Galea Romero">
+<meta property="og:description" content="Caso completo del capstone del Google Cloud Data Analytics Certificate: BigQuery, SQL, Looker Enterprise y LookML sobre 270.299 préstamos, con insights y recomendaciones.">
+<meta property="og:url" content="https://danielgalea7.github.io/caso/thelook-fintech/">
+<meta property="og:image" content="https://danielgalea7.github.io/assets/img/og-case-es.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="TheLook Fintech · Caso: salud de la cartera de préstamos · Daniel Galea Romero">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TheLook Fintech · Caso: salud de la cartera de préstamos · Daniel Galea Romero">
+<meta name="twitter:description" content="Caso completo del capstone del Google Cloud Data Analytics Certificate: BigQuery, SQL, Looker Enterprise y LookML sobre 270.299 préstamos, con insights y recomendaciones.">
+<meta name="twitter:image" content="https://danielgalea7.github.io/assets/img/og-case-es.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css?v=1">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}document.documentElement.classList.add("js");</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Daniel Galea Romero", "jobTitle": "Junior Data Analyst", "url": "https://danielgalea7.github.io/", "email": "mailto:darnite26@gmail.com", "address": {"@type": "PostalAddress", "addressLocality": "Granada", "addressCountry": "ES"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Universidad de Granada"}, "knowsAbout": ["SQL", "BigQuery", "Looker", "LookML", "Data analysis", "Google Cloud"], "sameAs": ["https://www.linkedin.com/in/dani-galea-romero-060941371/", "https://github.com/Danielgalea7", "https://www.credly.com/badges/53fe75b2-e19a-4265-aa9f-7e4d497fc33a/public_url"]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="currentColor"/><rect x="8" y="17" width="3.5" height="7" rx="1" fill="var(--bg)"/><rect x="14.25" y="12" width="3.5" height="12" rx="1" fill="var(--bg)"/><rect x="20.5" y="8" width="3.5" height="16" rx="1" fill="var(--accent)"/></svg><span>Daniel Galea</span><small>· Data Analyst</small><span class="sr-only"> · inicio</span></a>
+    
+    <div class="tools">
+      <a class="lang" href="/en/case-study/thelook-fintech/" hreflang="en" lang="en" title="Read in English"><span aria-hidden="true">EN</span><span class="sr-only">EN · Read in English</span></a>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Cambiar entre tema claro y oscuro"><span class="sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span class="moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="case-hero">
+    <div class="wrap">
+      <p class="crumbs"><a href="/#proyectos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"/></svg>Volver a proyectos</a></p>
+      <p class="eyebrow">Caso · Proyecto final del Google Cloud Data Analytics Certificate</p>
+      <h1>La salud de una cartera de <em>préstamos</em>, de BigQuery a Looker</h1>
+      <p class="lead">TheLook Fintech es una fintech ficticia que presta a tiendas online independientes para comprar inventario. Tesorería necesitaba saber, rápido y sin pedir informes, si estaban prestando más de lo prudente.</p>
+      <dl class="meta">
+        <div><dt>Rol</dt><dd>Cloud Data Analyst (proyecto)</dd></div>
+        <div><dt>Cliente interno</dt><dd>Tesorería (Trevor)</dd></div>
+        <div><dt>Herramientas</dt><dd>BigQuery · SQL · Cloud Storage · Connected Sheets · Looker · LookML</dd></div>
+        <div><dt>Entregables</dt><dd>4 tablas · dashboard · resumen ejecutivo</dd></div>
+      </dl>
+    </div>
+  </section>
+  <div class="wrap case-layout">
+    <aside class="toc" aria-label="En esta página"><p>En esta página</p><ol><li><a href="#problema">El problema</a></li><li><a href="#datos">Los datos</a></li><li><a href="#proceso">Proceso en BigQuery</a></li><li><a href="#dashboard">Dashboard en Looker</a></li><li><a href="#insights">Insights</a></li><li><a href="#recomendaciones">Recomendaciones</a></li><li><a href="#aprendizajes">Qué aprendí</a></li></ol></aside>
+    <article class="article">
+      <section aria-label="TL;DR">
+        <div class="tldr"><h2>En 20 segundos</h2><ul>
+          <li>Procesé en BigQuery 270.299 préstamos (4.166 M$) y los dejé en tablas listas para Tesorería, una de ellas conectada a Google Sheets.</li>
+          <li>Construí en Looker un dashboard de autoservicio que pinta en rojo el saldo pendiente cuando supera el límite: hoy, <strong>3.080,6 M$ frente a 3.000 M$</strong>.</li>
+          <li>Recomendación: frenar la emisión nueva, vigilar la concentración en 4 estados y revisar el riesgo de los préstamos para consolidar deuda (56 % del total).</li>
+        </ul></div>
+      </section>
+
+      <section id="problema" aria-labelledby="h-problema">
+        <h2 id="h-problema"><span class="step">01</span>El problema</h2>
+        <div class="prose"><p>La empresa está en fase de crecimiento y quiere escalar rápido. En una reunión con Trevor, jefe de Tesorería, salieron estas preguntas, cada una con su métrica:</p></div>
+        <div class="tablewrap"><table class="qtable"><thead><tr><th>Pregunta</th><th>Métrica</th><th>Por qué importa</th></tr></thead><tbody><tr><td>¿Cómo vigilamos el flujo de caja?</td><td>Importe prestado por año</td><td>Lo que sale no debe superar lo que entra.</td></tr><tr><td>¿Para qué piden los préstamos?</td><td>Finalidad (<code>application.purpose</code>)</td><td>La finalidad está muy relacionada con la probabilidad de devolver.</td></tr><tr><td>¿Dónde están los prestatarios?</td><td>Ubicación (estado → región)</td><td>La concentración geográfica aumenta el riesgo de impagos colectivos.</td></tr><tr><td>¿Cuánto tenemos pendiente?</td><td>Saldo pendiente vs límite de 3.000 M$</td><td>Es el máximo que el equipo considera prudente prestar.</td></tr><tr><td>¿Qué parte va mal?</td><td>% del saldo por estado del préstamo</td><td>Retrasos, fallidos e impagos son el riesgo real.</td></tr></tbody></table></div>
+      </section>
+
+      <section id="datos" aria-labelledby="h-datos">
+        <h2 id="h-datos"><span class="step">02</span>Los datos</h2>
+        <div class="prose">
+          <p>El <em>dataset</em> <code>fintech</code> de BigQuery, con dos tablas y un CSV externo:</p>
+          <ul class="clean">
+            <li><code>loan</code>: 270.299 préstamos de 2012 a 2019 con importe, tipo de interés, fecha y año de emisión, estado del préstamo, estado (territorio) y un registro anidado <code>application</code> con la finalidad.</li>
+            <li><code>customers</code>: ingresos anuales, propiedad de la vivienda, antigüedad laboral y estado de residencia.</li>
+            <li>Un CSV en Cloud Storage con la nueva clasificación de estados en regiones y subregiones.</li>
+          </ul>
+          <p>Limitaciones: los datos son ficticios (Google Cloud Training), llegan hasta 2019 y no incluyen los cobros, así que el flujo de caja solo se ve por el lado de las salidas.</p>
+        </div>
+        <div class="arch"><svg class="h" viewBox="0 0 960 180" role="img" aria-labelledby="arch-t-es"><title id="arch-t-es">Arquitectura del capstone: CSV en Cloud Storage, procesado con SQL en BigQuery, cuatro tablas de resultado, modelo LookML y dashboard para Tesorería.</title><rect class="box" x="20" y="40" width="160" height="96" rx="12"/><text class="t3" x="36" y="66">RECOGER</text><text class="t1" x="36" y="94">Cloud Storage</text><text class="t2" x="36" y="116">LOAD DATA · *.csv</text><rect class="box acc" x="210" y="40" width="160" height="96" rx="12"/><text class="t3" x="226" y="66">PROCESAR</text><text class="t1" x="226" y="94">BigQuery · SQL</text><text class="t2" x="226" y="116">JOIN · DISTINCT</text><rect class="box" x="400" y="40" width="160" height="96" rx="12"/><text class="t3" x="416" y="66">ALMACENAR</text><text class="t1" x="416" y="94">Tablas fintech</text><text class="t2" x="416" y="116">4 tablas · 3 CTAS</text><rect class="box acc" x="590" y="40" width="160" height="96" rx="12"/><text class="t3" x="606" y="66">ANALIZAR</text><text class="t1" x="606" y="94">LookML</text><text class="t2" x="606" y="116">loan.view · Explore</text><rect class="box" x="780" y="40" width="160" height="96" rx="12"/><text class="t3" x="796" y="66">ACTIVAR</text><text class="t1" x="796" y="94">Tesorería</text><text class="t2" x="796" y="116">Dashboard · Sheets</text><path class="wire" d="M180 88h30"/><path class="flow" d="M180 88h30"/><path class="wire" d="M370 88h30"/><path class="flow" d="M370 88h30"/><path class="wire" d="M560 88h30"/><path class="flow" d="M560 88h30"/><path class="wire" d="M750 88h30"/><path class="flow" d="M750 88h30"/><text class="t2" x="400" y="170">loan_with_region · loan_purposes · loan_count_by_year · state_region</text><path class="wire" d="M480 136v18"/></svg><svg class="v" viewBox="0 0 360 620" role="img" aria-labelledby="archv-t-es"><title id="archv-t-es">Arquitectura del capstone en cinco pasos</title><rect class="box" x="20" y="10" width="320" height="92" rx="12"/><text class="t3" x="40" y="38">RECOGER</text><text class="t1" x="40" y="66">Cloud Storage</text><text class="t2" x="40" y="86">LOAD DATA · *.csv</text><path class="wire" d="M180 102v32"/><path class="flow" d="M180 102v32"/><rect class="box acc" x="20" y="134" width="320" height="92" rx="12"/><text class="t3" x="40" y="162">PROCESAR</text><text class="t1" x="40" y="190">BigQuery · SQL</text><text class="t2" x="40" y="210">JOIN · DISTINCT</text><path class="wire" d="M180 226v32"/><path class="flow" d="M180 226v32"/><rect class="box" x="20" y="258" width="320" height="92" rx="12"/><text class="t3" x="40" y="286">ALMACENAR</text><text class="t1" x="40" y="314">Tablas fintech</text><text class="t2" x="40" y="334">4 tablas · 3 CTAS</text><path class="wire" d="M180 350v32"/><path class="flow" d="M180 350v32"/><rect class="box acc" x="20" y="382" width="320" height="92" rx="12"/><text class="t3" x="40" y="410">ANALIZAR</text><text class="t1" x="40" y="438">LookML</text><text class="t2" x="40" y="458">loan.view · Explore</text><path class="wire" d="M180 474v32"/><path class="flow" d="M180 474v32"/><rect class="box" x="20" y="506" width="320" height="92" rx="12"/><text class="t3" x="40" y="534">ACTIVAR</text><text class="t1" x="40" y="562">Tesorería</text><text class="t2" x="40" y="582">Dashboard · Sheets</text></svg></div>
+      </section>
+
+      <section id="proceso" aria-labelledby="h-proceso">
+        <h2 id="h-proceso"><span class="step">03</span>Proceso en BigQuery</h2>
+        <p class="prose">Parte 1 del capstone: recoger, procesar y almacenar. El SQL es el que usé en el lab.</p>
+        <div class="steps"><div class="stepcard"><h3>Importar la clasificación de estados desde Cloud Storage</h3><p>Trevor nos dio un CSV que asigna región y subregión a cada estado. Lo cargué como tabla estándar con <code>LOAD DATA OVERWRITE</code> y un esquema explícito, usando un comodín para leer todos los ficheros.</p><div class="codewrap"><pre data-copy tabindex="0"><code class="language-sql"><span class="k">LOAD</span> <span class="k">DATA</span> <span class="k">OVERWRITE</span> fintech.state_region
+(
+  state <span class="k">string</span>,
+  subregion <span class="k">string</span>,
+  region <span class="k">string</span>
+)
+<span class="k">FROM</span> <span class="k">FILES</span> (
+  <span class="k">format</span> = <span class="s">&#x27;CSV&#x27;</span>,
+  <span class="k">uris</span> = [<span class="s">&#x27;gs://sureskills-lab-dev/future-workforce/da-capstone/temp_35_us/state_region_mapping/state_region_*.csv&#x27;</span>]);</code></pre></div></div><div class="stepcard"><h3>Unir por la clave correcta y guardar el informe</h3><p>El informe necesitaba <code>loan_id</code>, <code>loan_amount</code> y la región nueva. Había dos consultas candidatas: la que unía por <code>region</code> parecía razonable, pero la clave que comparten las dos tablas es <code>state</code>. Guardé el resultado con un CTAS y lo abrí en <strong>Connected Sheets</strong> para que Tesorería lo filtrara en una hoja de cálculo (unas 270.000 filas).</p><p class="why">Unir por <code>region</code> habría usado la clasificación antigua (o ninguna). El JOIN decide qué dice el informe.</p><div class="codewrap"><pre data-copy tabindex="0"><code class="language-sql"><span class="c">-- Query B: join on the key both tables share</span>
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">TABLE</span> fintech.loan_with_region <span class="k">AS</span>
+<span class="k">SELECT</span>
+  lo.loan_id,
+  lo.loan_amount,
+  sr.region
+<span class="k">FROM</span> fintech.loan lo
+<span class="k">INNER</span> <span class="k">JOIN</span> fintech.state_region sr
+  <span class="k">ON</span> lo.state = sr.state;</code></pre></div></div><div class="stepcard"><h3>Datos anidados y deduplicación</h3><p>La finalidad del préstamo vive dentro del registro anidado <code>application</code>. <code>SELECT purpose</code> falla; hay que usar notación de punto. Con <code>DISTINCT</code> y un CTAS dejé una tabla limpia de finalidades únicas.</p><div class="codewrap"><pre data-copy tabindex="0"><code class="language-sql"><span class="c">-- purpose lives inside the nested RECORD `application`</span>
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">TABLE</span> fintech.loan_purposes <span class="k">AS</span>
+<span class="k">SELECT</span> <span class="k">DISTINCT</span> application.purpose <span class="k">AS</span> purpose
+<span class="k">FROM</span> fintech.loan;</code></pre></div></div><div class="stepcard"><h3>Informe de flujo de caja por año</h3><p>Para la pregunta del flujo de caja, Trevor quería una fila por año. <code>GROUP BY</code> con <code>COUNT</code> y <code>SUM</code>, guardado como tabla para reutilizarlo.</p><div class="codewrap"><pre data-copy tabindex="0"><code class="language-sql"><span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">TABLE</span> fintech.loan_count_by_year <span class="k">AS</span>
+<span class="k">SELECT</span> issue_year, <span class="f">COUNT</span>(loan_id) <span class="k">AS</span> loan_count
+<span class="k">FROM</span> fintech.loan
+<span class="k">GROUP</span> <span class="k">BY</span> issue_year;
+
+<span class="c">-- Cash out per year (Treasury&#x27;s cash-flow question)</span>
+<span class="k">SELECT</span> issue_year, <span class="f">SUM</span>(loan_amount) <span class="k">AS</span> total_amount
+<span class="k">FROM</span> fintech.loan
+<span class="k">GROUP</span> <span class="k">BY</span> issue_year
+<span class="k">ORDER</span> <span class="k">BY</span> issue_year;</code></pre></div></div></div>
+        <div class="grid2" style="margin-top:28px"><div class="card"><div class="chart reveal"><p class="ctitle">Préstamos emitidos por año</p><p class="csub">Número de préstamos · tabla loan_count_by_year</p><div class="cols" style="height:180px" aria-hidden="true"><div class="col" style="--h:5.01%" data-tip="&lt;b&gt;2012&lt;/b&gt;&lt;br&gt;2.594 préstamos"><span class="cv">2.594</span><span class="cb"></span></div><div class="col" style="--h:26.02%" data-tip="&lt;b&gt;2013&lt;/b&gt;&lt;br&gt;13.460 préstamos"><span class="cb"></span></div><div class="col" style="--h:45.33%" data-tip="&lt;b&gt;2014&lt;/b&gt;&lt;br&gt;23.453 préstamos"><span class="cb"></span></div><div class="col" style="--h:81.02%" data-tip="&lt;b&gt;2015&lt;/b&gt;&lt;br&gt;41.919 préstamos"><span class="cb"></span></div><div class="col" style="--h:83.82%" data-tip="&lt;b&gt;2016&lt;/b&gt;&lt;br&gt;43.368 préstamos"><span class="cb"></span></div><div class="col" style="--h:85.89%" data-tip="&lt;b&gt;2017&lt;/b&gt;&lt;br&gt;44.435 préstamos"><span class="cb"></span></div><div class="col" style="--h:95.35%" data-tip="&lt;b&gt;2018&lt;/b&gt;&lt;br&gt;49.333 préstamos"><span class="cb"></span></div><div class="col" style="--h:100.00%" data-tip="&lt;b&gt;2019&lt;/b&gt;&lt;br&gt;51.737 préstamos"><span class="cv">51.737</span><span class="cb"></span></div></div><div class="cols-x" aria-hidden="true"><span>2012</span><span>2013</span><span>2014</span><span>2015</span><span>2016</span><span>2017</span><span>2018</span><span>2019</span></div><details class="table"><summary>Ver los datos</summary><table><thead><tr><th>Año</th><th class="r">Préstamos</th></tr></thead><tbody><tr><td>2012</td><td class="r">2.594</td></tr><tr><td>2013</td><td class="r">13.460</td></tr><tr><td>2014</td><td class="r">23.453</td></tr><tr><td>2015</td><td class="r">41.919</td></tr><tr><td>2016</td><td class="r">43.368</td></tr><tr><td>2017</td><td class="r">44.435</td></tr><tr><td>2018</td><td class="r">49.333</td></tr><tr><td>2019</td><td class="r">51.737</td></tr></tbody></table></details></div></div><div class="card"><div class="chart reveal"><p class="ctitle">Importe prestado por año</p><p class="csub">Millones de dólares</p><div class="cols" style="height:180px" aria-hidden="true"><div class="col" style="--h:4.16%" data-tip="&lt;b&gt;2012&lt;/b&gt;&lt;br&gt;35,5 M$ · 2.594 préstamos"><span class="cv">35 M$</span><span class="cb"></span></div><div class="col" style="--h:23.39%" data-tip="&lt;b&gt;2013&lt;/b&gt;&lt;br&gt;199,4 M$ · 13.460 préstamos"><span class="cb"></span></div><div class="col" style="--h:40.86%" data-tip="&lt;b&gt;2014&lt;/b&gt;&lt;br&gt;348,3 M$ · 23.453 préstamos"><span class="cb"></span></div><div class="col" style="--h:75.02%" data-tip="&lt;b&gt;2015&lt;/b&gt;&lt;br&gt;639,4 M$ · 41.919 préstamos"><span class="cb"></span></div><div class="col" style="--h:74.93%" data-tip="&lt;b&gt;2016&lt;/b&gt;&lt;br&gt;638,6 M$ · 43.368 préstamos"><span class="cb"></span></div><div class="col" style="--h:77.51%" data-tip="&lt;b&gt;2017&lt;/b&gt;&lt;br&gt;660,7 M$ · 44.435 préstamos"><span class="cb"></span></div><div class="col" style="--h:92.90%" data-tip="&lt;b&gt;2018&lt;/b&gt;&lt;br&gt;791,9 M$ · 49.333 préstamos"><span class="cb"></span></div><div class="col" style="--h:100.00%" data-tip="&lt;b&gt;2019&lt;/b&gt;&lt;br&gt;852,4 M$ · 51.737 préstamos"><span class="cv">852 M$</span><span class="cb"></span></div></div><div class="cols-x" aria-hidden="true"><span>2012</span><span>2013</span><span>2014</span><span>2015</span><span>2016</span><span>2017</span><span>2018</span><span>2019</span></div><details class="table"><summary>Ver los datos</summary><table><thead><tr><th>Año</th><th class="r">Importe</th></tr></thead><tbody><tr><td>2012</td><td class="r">35 M$</td></tr><tr><td>2013</td><td class="r">199 M$</td></tr><tr><td>2014</td><td class="r">348 M$</td></tr><tr><td>2015</td><td class="r">639 M$</td></tr><tr><td>2016</td><td class="r">639 M$</td></tr><tr><td>2017</td><td class="r">661 M$</td></tr><tr><td>2018</td><td class="r">792 M$</td></tr><tr><td>2019</td><td class="r">852 M$</td></tr></tbody></table></details></div></div></div>
+      </section>
+
+      <section id="dashboard" aria-labelledby="h-dash">
+        <h2 id="h-dash"><span class="step">04</span>Dashboard en Looker</h2>
+        <p class="prose">Parte 2: analizar y activar. Un dashboard de autoservicio, <em>Loan Insights</em>, con cuatro visualizaciones sobre la <em>view</em> <code>loan</code> de LookML, <em>cross-filtering</em> (al pulsar un valor se filtran los demás tiles) y frecuencias de refresco por tile.</p>
+        <div class="dash" role="group" aria-label="Recreación del dashboard Loan Insights">
+      <div class="dash-top"><strong>Loan Insights</strong><span class="filters"><span>Cross-filtering: on</span><span>Refresco: 1 h</span></span></div>
+      <div class="tiles">
+        <div class="tile single"><h3>Total Amount of Outstanding Loans <small>single value</small></h3>
+          <div class="val">3.080.553.000</div>
+          <p class="rule">Formato condicional: fondo rojo si &gt; 3.000.000.000</p></div>
+        <div class="tile"><h3>Percentage of Outstanding Loans <small>pie → barra</small></h3>
+          <div class="stack" style="height:26px"><span class="sm" style="flex:87.888" data-tip="Al corriente: 87,89 %"></span><span class="sc" style="flex:9.072" data-tip="Fallido (charged off): 9,07 %"></span><span class="s2" style="flex:1.716" data-tip="Retraso 31–120 días: 1,72 %"></span><span class="s4" style="flex:0.895" data-tip="Periodo de gracia: 0,90 %"></span><span class="s5" style="flex:0.423" data-tip="Retraso 16–30 días: 0,42 %"></span><span class="s1" style="flex:0.006" data-tip="Impago (default): 0,01 %"></span></div><ul class="legend"><li><i class="sm"></i>Al corriente <span class="num">87,89 %</span></li><li><i class="sc"></i>Fallido (charged off) <span class="num">9,07 %</span></li><li><i class="s2"></i>Retraso 31–120 días <span class="num">1,72 %</span></li><li><i class="s4"></i>Periodo de gracia <span class="num">0,90 %</span></li><li><i class="s5"></i>Retraso 16–30 días <span class="num">0,42 %</span></li><li><i class="s1"></i>Impago (default) <span class="num">0,01 %</span></li></ul></div>
+        <div class="tile"><h3>Total Count of Outstanding Loans <small>bar · top 10</small></h3><div class="chart reveal"><ol class="bars" style="--lw:28px"><li><span class="bl">CA</span><span class="bt" data-tip="CA: 25.730"><span class="bb" style="--v:100.00%"></span></span><span class="bv">25.730</span></li><li><span class="bl">TX</span><span class="bt" data-tip="TX: 16.344"><span class="bb" style="--v:63.52%"></span></span><span class="bv">16.344</span></li><li><span class="bl">NY</span><span class="bt" data-tip="NY: 15.892"><span class="bb" style="--v:61.76%"></span></span><span class="bv">15.892</span></li><li><span class="bl">FL</span><span class="bt" data-tip="FL: 14.510"><span class="bb" style="--v:56.39%"></span></span><span class="bv">14.510</span></li><li><span class="bl">IL</span><span class="bt" data-tip="IL: 7.904"><span class="bb" style="--v:30.72%"></span></span><span class="bv">7.904</span></li><li><span class="bl">NJ</span><span class="bt" data-tip="NJ: 7.171"><span class="bb" style="--v:27.87%"></span></span><span class="bv">7.171</span></li><li><span class="bl">OH</span><span class="bt" data-tip="OH: 6.663"><span class="bb" style="--v:25.90%"></span></span><span class="bv">6.663</span></li><li><span class="bl">PA</span><span class="bt" data-tip="PA: 6.509"><span class="bb" style="--v:25.30%"></span></span><span class="bv">6.509</span></li><li><span class="bl">GA</span><span class="bt" data-tip="GA: 6.324"><span class="bb" style="--v:24.58%"></span></span><span class="bv">6.324</span></li><li><span class="bl">NC</span><span class="bt" data-tip="NC: 5.359"><span class="bb" style="--v:20.83%"></span></span><span class="bv">5.359</span></li></ol></div></div>
+        <div class="tile"><h3>Top 10 Customers by Highest Income <small>table</small></h3>
+          <table class="ptable"><thead><tr><th>Customer ID</th><th>Annual Income</th><th>State</th><th>Rate</th></tr></thead><tbody><tr><td><span class="redact" style="width:70px"></span></td><td><span class="redact" style="width:52px"></span></td><td><span class="redact" style="width:22px"></span></td><td><span class="redact" style="width:30px"></span></td></tr><tr><td><span class="redact" style="width:58px"></span></td><td><span class="redact" style="width:50px"></span></td><td><span class="redact" style="width:22px"></span></td><td><span class="redact" style="width:30px"></span></td></tr><tr><td><span class="redact" style="width:64px"></span></td><td><span class="redact" style="width:48px"></span></td><td><span class="redact" style="width:22px"></span></td><td><span class="redact" style="width:30px"></span></td></tr><tr><td><span class="redact" style="width:52px"></span></td><td><span class="redact" style="width:46px"></span></td><td><span class="redact" style="width:22px"></span></td><td><span class="redact" style="width:30px"></span></td></tr><tr><td><span class="redact" style="width:66px"></span></td><td><span class="redact" style="width:44px"></span></td><td><span class="redact" style="width:22px"></span></td><td><span class="redact" style="width:30px"></span></td></tr></tbody></table>
+          <p class="rule" style="font-size:12px;color:var(--muted);margin:8px 0 0">Filtros: Home Ownership = OWN · Loan Status = Current. Filas ocultas a propósito: no publico datos de clientes, aunque sean ficticios.</p></div>
+      </div>
+    </div>
+    <p class="dash-note">Recreación en HTML con los datos reales del dataset, a partir del dashboard que construí en Looker Enterprise dentro del entorno del lab (que no se puede compartir fuera de él). En Looker el reparto por estado era un gráfico circular; aquí lo muestro como barra apilada, que se lee mejor con porcentajes tan pequeños.</p>
+        <h3>La métrica por dentro</h3>
+        <p class="prose">El tile principal usa la métrica de LookML <em>Outstanding Loans Amount</em>. Este es el SQL que genera Looker: suma el importe de todo préstamo cuyo estado no sea <em>Fully Paid</em>.</p>
+        <div class="codewrap"><pre data-copy tabindex="0"><code class="language-sql"><span class="c">-- SQL that Looker generates for the LookML measure</span>
+<span class="c">-- &quot;Outstanding Loans Amount&quot; (single value tile)</span>
+<span class="k">SELECT</span> <span class="f">COALESCE</span>(<span class="f">SUM</span>(<span class="k">CASE</span> <span class="k">WHEN</span> (loan.loan_status &lt;&gt; <span class="s">&#x27;Fully Paid&#x27;</span>
+                               <span class="k">OR</span> loan.loan_status <span class="k">IS</span> <span class="k">NULL</span>)
+                         <span class="k">THEN</span> loan.loan_amount <span class="k">ELSE</span> <span class="k">NULL</span> <span class="k">END</span>), <span class="n">0</span>)
+       <span class="k">AS</span> loan_outstanding_loans_amount
+<span class="k">FROM</span> <span class="s">`cloud-training-demos.fintech.loan`</span> <span class="k">AS</span> loan
+<span class="k">LIMIT</span> <span class="n">500</span>;</code></pre></div>
+        <h3>Refresco por tile</h3>
+        <div class="tablewrap"><table class="refresh"><thead><tr><th>Tile</th><th>Frecuencia</th><th>Por qué</th></tr></thead><tbody>
+      <tr><td>Total Amount of Outstanding Loans</td><td>Cada hora</td><td>Es la alerta de riesgo: tiene que estar al día</td></tr>
+      <tr><td>Percentage of Outstanding Loans</td><td>Diaria</td><td>El reparto por estado cambia despacio</td></tr>
+      <tr><td>Top 10 Customers by Highest Income</td><td>Diaria</td><td>Ahorra consultas sin perder utilidad</td></tr>
+      <tr><td>Dashboard completo</td><td>Cada hora</td><td>Coherente con el tile más exigente</td></tr></tbody></table></div>
+      </section>
+
+      <section id="insights" aria-labelledby="h-ins">
+        <h2 id="h-ins"><span class="step">05</span>Insights</h2>
+        <div class="insight">
+          <div><h3>El saldo pendiente ya supera el límite</h3>
+            <p class="big alert num">3.080,6 M$</p>
+            <p>Un 2,7 % por encima de los 3.000 M$ que Tesorería considera prudentes. El 87,9 % está al corriente, pero <strong>373 M$ (12,1 %)</strong> no: sobre todo préstamos fallidos (279 M$).</p></div>
+          <div><div class="chart"><p class="ctitle">Saldo pendiente frente al límite de Tesorería</p>
+      <p class="csub">Escala de 0 a 3.500 M$</p>
+      <div class="meter" role="img" aria-label="3.080,6 millones pendientes frente a un límite de 3.000 millones">
+        <div class="track"><div class="fill" style="--v:88.02%"></div><div class="mark" style="--t:85.71%"><span>límite 3.000 M$</span></div></div>
+        <div class="scale"><span>0</span><span>1.000</span><span>2.000</span><span>3.000</span><span>3.500 M$</span></div>
+      </div></div><div style="height:18px"></div><div class="chart reveal"><p class="ctitle">Saldo pendiente por estado del préstamo</p><p class="csub">Millones de dólares y % del total pendiente</p><ol class="bars" style="--lw:150px"><li class="muted-row"><span class="bl">Al corriente</span><span class="bt" data-tip="Al corriente: 2.707,4 M$"><span class="bb" style="--v:100.00%"></span></span><span class="bv">2.707,4 M$ · 87,89 %</span></li><li class="crit"><span class="bl">Fallido (charged off)</span><span class="bt" data-tip="Fallido (charged off): 279,5 M$"><span class="bb" style="--v:10.32%"></span></span><span class="bv">279,5 M$ · 9,07 %</span></li><li class="crit"><span class="bl">Retraso 31–120 días</span><span class="bt" data-tip="Retraso 31–120 días: 52,8 M$"><span class="bb" style="--v:1.95%"></span></span><span class="bv">52,8 M$ · 1,72 %</span></li><li class="crit"><span class="bl">Periodo de gracia</span><span class="bt" data-tip="Periodo de gracia: 27,6 M$"><span class="bb" style="--v:1.02%"></span></span><span class="bv">27,6 M$ · 0,90 %</span></li><li class="crit"><span class="bl">Retraso 16–30 días</span><span class="bt" data-tip="Retraso 16–30 días: 13,0 M$"><span class="bb" style="--v:0.60%"></span></span><span class="bv">13,0 M$ · 0,42 %</span></li><li class="crit"><span class="bl">Impago (default)</span><span class="bt" data-tip="Impago (default): 0,2 M$"><span class="bb" style="--v:0.60%"></span></span><span class="bv">0,2 M$ · 0,01 %</span></li></ol><details class="table"><summary>Ver los datos</summary><table><thead><tr><th>Estado</th><th class="r">Importe</th></tr></thead><tbody><tr><td>Al corriente</td><td class="r">2.707,4 M$ · 87,89 %</td></tr><tr><td>Fallido (charged off)</td><td class="r">279,5 M$ · 9,07 %</td></tr><tr><td>Retraso 31–120 días</td><td class="r">52,8 M$ · 1,72 %</td></tr><tr><td>Periodo de gracia</td><td class="r">27,6 M$ · 0,90 %</td></tr><tr><td>Retraso 16–30 días</td><td class="r">13,0 M$ · 0,42 %</td></tr><tr><td>Impago (default)</td><td class="r">0,2 M$ · 0,01 %</td></tr></tbody></table></details></div></div>
+        </div>
+        <div class="insight">
+          <div><h3>Crecimiento muy rápido</h3>
+            <p class="big num">×24</p>
+            <p>El importe prestado pasó de 35,5 M$ en 2012 a <strong>852,4 M$ en 2019</strong> (2.594 → 51.737 préstamos). Crecer así exige vigilar el riesgo a la vez.</p></div>
+          <div class="card"><div class="chart reveal"><p class="ctitle">Importe prestado por año</p><p class="csub">Millones de dólares</p><div class="cols" style="height:180px" aria-hidden="true"><div class="col" style="--h:4.16%" data-tip="&lt;b&gt;2012&lt;/b&gt;&lt;br&gt;35,5 M$ · 2.594 préstamos"><span class="cv">35 M$</span><span class="cb"></span></div><div class="col" style="--h:23.39%" data-tip="&lt;b&gt;2013&lt;/b&gt;&lt;br&gt;199,4 M$ · 13.460 préstamos"><span class="cb"></span></div><div class="col" style="--h:40.86%" data-tip="&lt;b&gt;2014&lt;/b&gt;&lt;br&gt;348,3 M$ · 23.453 préstamos"><span class="cb"></span></div><div class="col" style="--h:75.02%" data-tip="&lt;b&gt;2015&lt;/b&gt;&lt;br&gt;639,4 M$ · 41.919 préstamos"><span class="cb"></span></div><div class="col" style="--h:74.93%" data-tip="&lt;b&gt;2016&lt;/b&gt;&lt;br&gt;638,6 M$ · 43.368 préstamos"><span class="cb"></span></div><div class="col" style="--h:77.51%" data-tip="&lt;b&gt;2017&lt;/b&gt;&lt;br&gt;660,7 M$ · 44.435 préstamos"><span class="cb"></span></div><div class="col" style="--h:92.90%" data-tip="&lt;b&gt;2018&lt;/b&gt;&lt;br&gt;791,9 M$ · 49.333 préstamos"><span class="cb"></span></div><div class="col" style="--h:100.00%" data-tip="&lt;b&gt;2019&lt;/b&gt;&lt;br&gt;852,4 M$ · 51.737 préstamos"><span class="cv">852 M$</span><span class="cb"></span></div></div><div class="cols-x" aria-hidden="true"><span>2012</span><span>2013</span><span>2014</span><span>2015</span><span>2016</span><span>2017</span><span>2018</span><span>2019</span></div><details class="table"><summary>Ver los datos</summary><table><thead><tr><th>Año</th><th class="r">Importe</th></tr></thead><tbody><tr><td>2012</td><td class="r">35 M$</td></tr><tr><td>2013</td><td class="r">199 M$</td></tr><tr><td>2014</td><td class="r">348 M$</td></tr><tr><td>2015</td><td class="r">639 M$</td></tr><tr><td>2016</td><td class="r">639 M$</td></tr><tr><td>2017</td><td class="r">661 M$</td></tr><tr><td>2018</td><td class="r">792 M$</td></tr><tr><td>2019</td><td class="r">852 M$</td></tr></tbody></table></details></div></div>
+        </div>
+        <div class="insight">
+          <div><h3>La mayoría refinancia deuda</h3>
+            <p class="big num">80 %</p>
+            <p>de los préstamos son para consolidar deudas (56 %) o pagar tarjetas de crédito (24 %). La finalidad está muy ligada a la probabilidad de devolver: es la primera palanca de riesgo.</p></div>
+          <div class="card"><div class="chart reveal"><p class="ctitle">Préstamos por finalidad</p><p class="csub">Columna anidada application.purpose · 2012–2019</p><ol class="bars" style="--lw:170px"><li class="hl"><span class="bl">Consolidación de deuda</span><span class="bt" data-tip="Consolidación de deuda: 152.285"><span class="bb" style="--v:100.00%"></span></span><span class="bv">152.285 · 56 %</span></li><li class="hl"><span class="bl">Tarjeta de crédito</span><span class="bt" data-tip="Tarjeta de crédito: 64.477"><span class="bb" style="--v:42.34%"></span></span><span class="bv">64.477 · 24 %</span></li><li class="muted-row"><span class="bl">Reformas del hogar</span><span class="bt" data-tip="Reformas del hogar: 17.601"><span class="bb" style="--v:11.56%"></span></span><span class="bv">17.601 · 7 %</span></li><li class="muted-row"><span class="bl">Otros</span><span class="bt" data-tip="Otros: 16.279"><span class="bb" style="--v:10.69%"></span></span><span class="bv">16.279 · 6 %</span></li><li class="muted-row"><span class="bl">Compra importante</span><span class="bt" data-tip="Compra importante: 5.584"><span class="bb" style="--v:3.67%"></span></span><span class="bv">5.584 · 2 %</span></li><li class="muted-row"><span class="bl">Resto de finalidades</span><span class="bt" data-tip="Resto"><span class="bb" style="--v:9.24%"></span></span><span class="bv">14.073 · 5 %</span></li></ol><details class="table"><summary>Ver los datos</summary><table><thead><tr><th>Finalidad</th><th class="r">Préstamos</th></tr></thead><tbody><tr><td>Consolidación de deuda</td><td class="r">152.285 · 56 %</td></tr><tr><td>Tarjeta de crédito</td><td class="r">64.477 · 24 %</td></tr><tr><td>Reformas del hogar</td><td class="r">17.601 · 7 %</td></tr><tr><td>Otros</td><td class="r">16.279 · 6 %</td></tr><tr><td>Compra importante</td><td class="r">5.584 · 2 %</td></tr><tr><td>Resto de finalidades</td><td class="r">14.073 · 5 %</td></tr></tbody></table></details></div></div>
+        </div>
+        <div class="insight">
+          <div><h3>Cuatro estados concentran el riesgo</h3>
+            <p class="big num">72.476</p>
+            <p>préstamos pendientes en California, Texas, Nueva York y Florida: más que los otros seis estados del top 10 juntos (39.930).</p></div>
+          <div class="card"><div class="chart reveal"><p class="ctitle">Top 10 estados por préstamos pendientes</p><p class="csub">Número de préstamos no pagados del todo</p><ol class="bars" style="--lw:40px"><li class="hl"><span class="bl">CA</span><span class="bt" data-tip="CA: 25.730 préstamos pendientes"><span class="bb" style="--v:100.00%"></span></span><span class="bv">25.730</span></li><li class="hl"><span class="bl">TX</span><span class="bt" data-tip="TX: 16.344 préstamos pendientes"><span class="bb" style="--v:63.52%"></span></span><span class="bv">16.344</span></li><li class="hl"><span class="bl">NY</span><span class="bt" data-tip="NY: 15.892 préstamos pendientes"><span class="bb" style="--v:61.76%"></span></span><span class="bv">15.892</span></li><li class="hl"><span class="bl">FL</span><span class="bt" data-tip="FL: 14.510 préstamos pendientes"><span class="bb" style="--v:56.39%"></span></span><span class="bv">14.510</span></li><li class="muted-row"><span class="bl">IL</span><span class="bt" data-tip="IL: 7.904 préstamos pendientes"><span class="bb" style="--v:30.72%"></span></span><span class="bv">7.904</span></li><li class="muted-row"><span class="bl">NJ</span><span class="bt" data-tip="NJ: 7.171 préstamos pendientes"><span class="bb" style="--v:27.87%"></span></span><span class="bv">7.171</span></li><li class="muted-row"><span class="bl">OH</span><span class="bt" data-tip="OH: 6.663 préstamos pendientes"><span class="bb" style="--v:25.90%"></span></span><span class="bv">6.663</span></li><li class="muted-row"><span class="bl">PA</span><span class="bt" data-tip="PA: 6.509 préstamos pendientes"><span class="bb" style="--v:25.30%"></span></span><span class="bv">6.509</span></li><li class="muted-row"><span class="bl">GA</span><span class="bt" data-tip="GA: 6.324 préstamos pendientes"><span class="bb" style="--v:24.58%"></span></span><span class="bv">6.324</span></li><li class="muted-row"><span class="bl">NC</span><span class="bt" data-tip="NC: 5.359 préstamos pendientes"><span class="bb" style="--v:20.83%"></span></span><span class="bv">5.359</span></li></ol><details class="table"><summary>Ver los datos</summary><table><thead><tr><th>Estado</th><th class="r">Préstamos</th></tr></thead><tbody><tr><td>CA</td><td class="r">25.730</td></tr><tr><td>TX</td><td class="r">16.344</td></tr><tr><td>NY</td><td class="r">15.892</td></tr><tr><td>FL</td><td class="r">14.510</td></tr><tr><td>IL</td><td class="r">7.904</td></tr><tr><td>NJ</td><td class="r">7.171</td></tr><tr><td>OH</td><td class="r">6.663</td></tr><tr><td>PA</td><td class="r">6.509</td></tr><tr><td>GA</td><td class="r">6.324</td></tr><tr><td>NC</td><td class="r">5.359</td></tr></tbody></table></details></div></div>
+        </div>
+      </section>
+
+      <section id="recomendaciones" aria-labelledby="h-rec">
+        <h2 id="h-rec"><span class="step">06</span>Recomendaciones</h2>
+        <p class="prose">Lo cerré con un resumen ejecutivo de una diapositiva para la dirección, sin jerga técnica:</p>
+        <div class="slide">
+          <div class="slide-head"><h3>Préstamos bajo control: lo que Tesorería necesita ver</h3><span>Para: equipo directivo de TheLook Fintech</span></div>
+          <div class="slide-body">
+            <div><h4>Overview</h4><p>TheLook Fintech crece rápido y necesita que lo que presta no supere lo que entra. Reunimos los datos de préstamos en BigQuery y los convertimos en informes y un dashboard para seguir flujo de caja, finalidad y ubicación.</p></div>
+            <div><h4>Objective</h4><ul><li>Meta 1: informe de préstamos emitidos por año.</li><li>Meta 2: dashboard de autoservicio con la salud de la cartera.</li><li>Impacto: decidir a tiempo, reducir riesgo y adaptar la oferta.</li></ul></div>
+            <div><h4>Results</h4><ul><li>Préstamos ×20 entre 2012 y 2019 (2.594 → 51.737).</li><li>Saldo pendiente: 3.080,6 M$, por encima del límite y marcado en rojo.</li><li>87,9 % al corriente; 4 estados concentran el riesgo.</li></ul></div>
+            <div><h4>Next steps</h4><ul><li><strong>Frenar la emisión nueva mientras el saldo supere el límite</strong> y priorizar el cobro: hoy está 80,6 M$ por encima.</li><li><strong>Vigilar la concentración</strong> en California, Texas, Nueva York y Florida (72.476 préstamos pendientes, más que los otros seis estados del top 10 juntos).</li><li><strong>Revisar el riesgo por finalidad</strong>: el 80 % de los préstamos son para consolidar deudas o pagar tarjetas.</li></ul></div>
+          </div>
+        </div>
+        <h3>Y después</h3>
+        <ul class="clean prose"><li>Añadir una <strong>alerta</strong> automática cuando el saldo cruce el umbral, además del color.</li><li>Incorporar los <strong>cobros</strong> (entradas de caja) para ver el flujo de caja completo, no solo las salidas.</li><li>Recoger <strong>feedback</strong> de Tesorería sobre el dashboard e iterar, y <strong>segmentar a los prestatarios</strong> por comportamiento (como en mi proyecto RFM).</li></ul>
+      </section>
+
+      <section id="aprendizajes" aria-labelledby="h-learn">
+        <h2 id="h-learn"><span class="step">07</span>Qué aprendí</h2>
+        <ul class="learn"><li><span class="ix">01</span><div><b>La clave del JOIN es una decisión de negocio</b>Dos consultas casi iguales daban informes distintos. Ahora compruebo qué columna comparten de verdad las tablas antes de unir.</div></li><li><span class="ix">02</span><div><b>Una métrica no es una columna</b>«Saldo pendiente» en el lab suma el importe original de los préstamos no pagados del todo, no el capital vivo. En un caso real pediría el saldo vivo y lo documentaría en LookML.</div></li><li><span class="ix">03</span><div><b>Un umbral visible vale más que una tabla</b>El formato condicional convierte la regla de Tesorería (3.000 M$) en algo que se ve en un segundo.</div></li><li><span class="ix">04</span><div><b>Refrescar cuesta</b>Cada tile se actualiza según lo rápido que cambia su dato: rendimiento y coste, no solo frescura.</div></li><li><span class="ix">05</span><div><b>Escribir para quien decide</b>El resumen ejecutivo cabe en una diapositiva: título, contexto, objetivo, resultados con cifras y un siguiente paso. Sin jerga.</div></li></ul>
+        <p class="prose" style="margin-top:22px;font-size:14.5px">Proyecto final del certificado, con pasos guiados y retos sin instrucciones paso a paso, sobre datos ficticios de Google Cloud Training. Cifras consultadas de nuevo en <code>cloud-training-demos.fintech</code> el 12/10/2026; coinciden con las del lab. El SQL completo está en <a href="https://github.com/Danielgalea7/thelook-fintech-capstone">GitHub</a>.</p>
+        <div class="next-case"><a class="btn" href="/#proyectos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"/></svg>Más proyectos</a><a class="btn primary" href="mailto:darnite26@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Hablemos</a></div>
+      </section>
+    </article>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Datos: <code>bigquery-public-data.thelook_ecommerce</code> (sintético, foto del 12/10/2026) y <code>cloud-training-demos.fintech</code> (capstone). Consultas ejecutadas en el BigQuery sandbox. Sitio estático en HTML, CSS y JavaScript, sin frameworks ni cookies.</p>
+    <p>© 2026 Daniel Galea Romero</p>
+  </div>
+</footer>
+<script src="/assets/js/site.js?v=1" defer></script>
+</body>
+</html>
