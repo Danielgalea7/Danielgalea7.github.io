@@ -16,7 +16,7 @@ DATA = os.path.join(HERE, "..", "data")
 SITE_URL = os.environ.get("SITE_URL", "https://danielgalea7.github.io").rstrip("/")
 
 EMAIL = "darnite26@gmail.com"
-LINKEDIN = "https://www.linkedin.com/in/dani-galea-romero-060941371/"
+LINKEDIN = "https://www.linkedin.com/in/daniel-galea-romero-060941371/"
 GITHUB = "https://github.com/Danielgalea7"
 CREDLY = "https://www.credly.com/badges/53fe75b2-e19a-4265-aa9f-7e4d497fc33a/public_url"
 CAPSTONE_REPO = "https://github.com/Danielgalea7/thelook-fintech-capstone"
@@ -514,7 +514,7 @@ def C(lang):
                        "I'm looking for a part-time junior data analyst role, remote or hybrid from Granada, and I can start right away."),
         "links": [
             ("Email", EMAIL, f"mailto:{EMAIL}"),
-            ("LinkedIn", "linkedin.com/in/dani-galea-romero", LINKEDIN),
+            ("LinkedIn", "linkedin.com/in/daniel-galea-romero", LINKEDIN),
             ("GitHub", "github.com/Danielgalea7", GITHUB),
             ("Credly", L("Insignia del certificado", "Certificate badge"), CREDLY),
             (L("CV (PDF)", "Résumé (PDF)"), L("Español · English", "English · Español"), CV[lang]),
