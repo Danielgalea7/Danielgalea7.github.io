@@ -510,8 +510,8 @@ def C(lang):
         # contact
         "contact_k": L("<b>06</b> · Contacto", "<b>06</b> · Contact"),
         "contact_h": L("¿<em>Hablamos</em>?", "Let's <em>talk</em>"),
-        "contact_p": L("Busco prácticas o un puesto de analista de datos junior a media jornada, en remoto o híbrido desde Granada. Contesto en menos de 24 horas.",
-                       "I'm looking for an internship or a part-time junior data analyst role, remote or hybrid from Granada. I reply within 24 hours."),
+        "contact_p": L("Busco un puesto de analista de datos junior a media jornada, en remoto o híbrido desde Granada, con incorporación inmediata.",
+                       "I'm looking for a part-time junior data analyst role, remote or hybrid from Granada, and I can start right away."),
         "links": [
             ("Email", EMAIL, f"mailto:{EMAIL}"),
             ("LinkedIn", "linkedin.com/in/dani-galea-romero", LINKEDIN),
